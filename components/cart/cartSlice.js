@@ -34,7 +34,7 @@ export const cartSlice = createSlice({
     increment: (state, action) => {
       state.value.forEach((item, index) => {
         if(item.idProduct == action.payload){
-          if(state.value[index].quantity < 10){
+          if(state.value[index].quantity < 999){
             state.value[index].quantity++
           }
         }
