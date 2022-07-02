@@ -27,6 +27,7 @@ function Contact() {
     dispatch(closeSlider());
   }, []);
   const login = async () =>{
+    setIsActive(false);
     let data = {
       "fullname" : fullname,
       "phone" : phone,
@@ -57,7 +58,8 @@ function Contact() {
             variant: "left-accent",
             duration: 5000,
             isClosable: true,
-            });   
+            });  
+        setIsActive(true);
         console.log("API Fail !!");
         console.log(error);
     }

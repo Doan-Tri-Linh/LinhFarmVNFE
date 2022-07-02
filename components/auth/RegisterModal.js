@@ -22,6 +22,7 @@ export function RegisterModal(){
     const [email, setEmail] = useState();
 
     const register = async (data) =>{
+        setIsSending(true)
         try {
             const response = await UserApi.register(data);
             // console.log("data"+ JSON.stringify(response));
@@ -51,13 +52,13 @@ export function RegisterModal(){
                 duration: 5000,
                 isClosable: true,
                 });   
+            setIsSending(false)
             console.log("Search API Fail !!");
             console.log(error);
         }
     }
 
     const handleSubmit = () => {
-        setIsSending(true)
         if(username=="" || password=="" || fullname=="" || address=="" || email==""){
             toast({
                 title: `Thông tin không được trống`,

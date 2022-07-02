@@ -46,6 +46,7 @@ export function ProductDetailModal() {
   const isLogin = useSelector(selectIsLogin);
   const user = useSelector(selectUser);
   const [content, setContent] = useState();
+  const [isSending, setIsSending] = useState(false)
 
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({
@@ -84,8 +85,8 @@ export function ProductDetailModal() {
   };
 
   const saveReview = async (data) => {
+    setIsSending(true)
     try {
-      console.log("dataaaa : " + JSON.stringify(data));
       const response = await productApi.saveReview(data);
       // console.log(response);
       toast({
@@ -107,6 +108,7 @@ export function ProductDetailModal() {
         duration: 3000,
         isClosable: true,
       });
+      setIsSending(false)
     }
   };
 
@@ -333,7 +335,7 @@ export function ProductDetailModal() {
                   value={content}
                 />
                 <InputRightElement width="4.5rem">
-                  <Button h="1.75rem" size="sm" onClick={submitReview} colorScheme='pink'>
+                  <Button h="1.75rem" size="sm" onClick={submitReview} colorScheme='pink' disabled={isSending}>
                     <FaPaperPlane />
                   </Button>
                 </InputRightElement>

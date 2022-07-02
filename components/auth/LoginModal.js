@@ -12,12 +12,14 @@ export function LoginModal(){
 
     const dispatch = useDispatch();
     const toast = useToast();
+    const [isSending, setIsSending] = useState(false)
 
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const [showPass, setShowPass] = useState(false)
     
     const login = async () =>{
+        setIsSending(true)
         try {
             const response = await UserApi.login(username, password);
             // console.log("data"+ JSON.stringify(response));
@@ -42,7 +44,8 @@ export function LoginModal(){
                 variant: "left-accent",
                 duration: 5000,
                 isClosable: true,
-                });   
+                });
+            setIsSending(false)
             console.log("API Fail !!");
             console.log(error);
         }
@@ -107,6 +110,7 @@ export function LoginModal(){
                     textColor='#f5f4ed' fontWeight='bold'
                     textAlign='center' className="browButton"
                     onClick={()=>dispatch(closeLoginModal())}
+                    disabled={isSending}
                 >
                     <FaArrowLeft/><Text fontSize='xl'>&nbsp;Hủy</Text>
                 </Button>
@@ -115,6 +119,7 @@ export function LoginModal(){
                          textColor='#f5f4ed' fontWeight='bold'
                         textAlign='center' className="redButton"
                         onClick={()=>handleSubmit()}
+                        disabled={isSending}
                 >
                     <Text fontSize='xl'>Đăng nhập</Text>&nbsp;<FaArrowRight/>
                 </Button>

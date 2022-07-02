@@ -12,6 +12,7 @@ export function UserInfoModal(){
 
     const dispatch = useDispatch();
     const toast = useToast()
+    const [isSending, setIsSending] = useState(false)
 
     const user = useSelector(selectUser);
 
@@ -24,6 +25,7 @@ export function UserInfoModal(){
     const [email, setEmail] = useState(user.email);
     
     const saveInfo = async (data) =>{
+        setIsSending(true)
         try {
             const response = await UserApi.saveProfile(data);
             // console.log("data"+ JSON.stringify(response));
@@ -50,6 +52,7 @@ export function UserInfoModal(){
                 duration: 5000,
                 isClosable: true,
                 });   
+            setIsSending(false)
             console.log("Search API Fail !!");
             console.log(error);
         }
@@ -139,6 +142,7 @@ export function UserInfoModal(){
                     textColor='#f5f4ed' fontWeight='bold'
                     textAlign='center' className="browButton"
                     onClick={()=>dispatch(closeUserInfoModal())}
+                    disabled={isSending}
                 >
                     <FaArrowLeft/><Text fontSize='xl'>&nbsp;Hủy</Text>
                 </Button>
@@ -147,6 +151,7 @@ export function UserInfoModal(){
                          textColor='#f5f4ed' fontWeight='bold'
                         textAlign='center' className="redButton"
                         onClick={()=>handleSubmit()}
+                        disabled={isSending}
                 >
                     <Text fontSize='xl'>Lưu thay đổi</Text>&nbsp;<FaArrowRight/>
                 </Button>
