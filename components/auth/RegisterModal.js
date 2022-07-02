@@ -12,6 +12,7 @@ export function RegisterModal(){
 
     const dispatch = useDispatch();
     const toast = useToast()
+    const [isSending, setIsSending] = useState(false)
 
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
@@ -56,6 +57,7 @@ export function RegisterModal(){
     }
 
     const handleSubmit = () => {
+        setIsSending(true)
         if(username=="" || password=="" || fullname=="" || address=="" || email==""){
             toast({
                 title: `Thông tin không được trống`,
@@ -137,6 +139,7 @@ export function RegisterModal(){
                     textColor='#f5f4ed' fontWeight='bold'
                     textAlign='center' className="browButton"
                     onClick={()=>dispatch(closeRegisterModal())}
+                    disabled={isSending}
                 >
                     <FaArrowLeft/><Text fontSize='xl'>&nbsp;Hủy</Text>
                 </Button>
@@ -145,6 +148,7 @@ export function RegisterModal(){
                          textColor='#f5f4ed' fontWeight='bold'
                         textAlign='center' className="redButton"
                         onClick={()=>handleSubmit()}
+                        disabled={isSending}
                 >
                     <Text fontSize='xl'>Đăng ký</Text>&nbsp;<FaArrowRight/>
                 </Button>
