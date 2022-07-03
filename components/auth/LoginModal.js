@@ -111,6 +111,7 @@ export function LoginModal(){
                     textAlign='center' className="browButton"
                     onClick={()=>dispatch(closeLoginModal())}
                     disabled={isSending}
+                    isLoading={isSending}
                 >
                     <FaArrowLeft/><Text fontSize='xl'>&nbsp;Hủy</Text>
                 </Button>
@@ -120,6 +121,7 @@ export function LoginModal(){
                         textAlign='center' className="redButton"
                         onClick={()=>handleSubmit()}
                         disabled={isSending}
+                        isLoading={isSending}
                 >
                     <Text fontSize='xl'>Đăng nhập</Text>&nbsp;<FaArrowRight/>
                 </Button>

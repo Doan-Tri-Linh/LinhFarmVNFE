@@ -143,6 +143,7 @@ export function UserInfoModal(){
                     textAlign='center' className="browButton"
                     onClick={()=>dispatch(closeUserInfoModal())}
                     disabled={isSending}
+                    isLoading={isSending}
                 >
                     <FaArrowLeft/><Text fontSize='xl'>&nbsp;Hủy</Text>
                 </Button>
@@ -152,6 +153,7 @@ export function UserInfoModal(){
                         textAlign='center' className="redButton"
                         onClick={()=>handleSubmit()}
                         disabled={isSending}
+                        isLoading={isSending}
                 >
                     <Text fontSize='xl'>Lưu thay đổi</Text>&nbsp;<FaArrowRight/>
                 </Button>

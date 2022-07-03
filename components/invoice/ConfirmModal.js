@@ -162,6 +162,7 @@ export function ConfirmModal(){
                     textAlign='center' className="browButton"
                     onClick={()=>dispatch(closeConfirmModal())}
                     disabled={isSending}
+                    isLoading={isSending}
                 >
                     <Text fontSize='xl'>Huỷ</Text>&nbsp;<FaRegTimesCircle/>
                 </Button>
@@ -170,6 +171,7 @@ export function ConfirmModal(){
                          textColor='green' fontWeight='bold'
                         textAlign='center' className="redButton"
                         onClick={()=>handleSubmit()}
+                        isLoading={isSending}
                         disabled={isSending}
                 >
                     <Text fontSize='xl'>Đặt hàng</Text>&nbsp; { isSending ? <Spinner/> : <FaCheck/> }

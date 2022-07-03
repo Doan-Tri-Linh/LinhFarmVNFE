@@ -335,7 +335,8 @@ export function ProductDetailModal() {
                   value={content}
                 />
                 <InputRightElement width="4.5rem">
-                  <Button h="1.75rem" size="sm" onClick={submitReview} colorScheme='pink' disabled={isSending}>
+                  <Button h="1.75rem" size="sm" onClick={submitReview} colorScheme='pink' disabled={isSending} isLoading={isSending}
+>
                     <FaPaperPlane />
                   </Button>
                 </InputRightElement>

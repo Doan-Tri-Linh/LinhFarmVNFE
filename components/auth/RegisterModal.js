@@ -141,6 +141,7 @@ export function RegisterModal(){
                     textAlign='center' className="browButton"
                     onClick={()=>dispatch(closeRegisterModal())}
                     disabled={isSending}
+                    isLoading={isSending}
                 >
                     <FaArrowLeft/><Text fontSize='xl'>&nbsp;Hủy</Text>
                 </Button>
@@ -150,7 +151,8 @@ export function RegisterModal(){
                         textAlign='center' className="redButton"
                         onClick={()=>handleSubmit()}
                         disabled={isSending}
-                >
+                        isLoading={isSending}
+                        >
                     <Text fontSize='xl'>Đăng ký</Text>&nbsp;<FaArrowRight/>
                 </Button>
                 </Flex>

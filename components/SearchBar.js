@@ -54,6 +54,7 @@ export default function SearchBar(){
                             onClick={()=>setKeyword(keyword)}
                             id="submitSearch"
                             disabled={isLoading}
+                            isLoading={isLoading}
                     ><FaSearch />
                     </Button>
                 } />

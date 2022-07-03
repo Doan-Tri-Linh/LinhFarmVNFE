@@ -29,14 +29,17 @@ export function ShoppingHistoryModal() {
   const dispatch = useDispatch();
   const orders = useSelector(selectHistoryList);
   const toast = useToast();
+  const [isSending, setIsSending] = useState(false)
 
   const loadHistoryDetail = async (idOrder) =>{
+    setIsSending(true)
     try {
         const response = await UserApi.getHistoryOrderDetailByOrderId(idOrder);
         console.log("data orders: "+ response);
         if(response != null){
             dispatch(addDetailList(response));
             dispatch(openHistoryDetailModal());
+            setIsSending(false)
         }
     } catch (error) {
         toast({
@@ -49,6 +52,7 @@ export function ShoppingHistoryModal() {
             });   
         console.log("API Fail !!");
         console.log(error);
+        setIsSending(false)
     }
 }
 
@@ -99,6 +103,8 @@ export function ShoppingHistoryModal() {
                         <Td>{item.statusByStatusId.statusNameVie}</Td>
                         <Td>
                         <Button colorScheme='pink' variant='solid' onClick={()=>handleSubmit(item.idOrder)}
+                                isLoading={isSending}
+                                disabled={isSending}
                         ><FaListUl /></Button>
                         </Td>
                       </Tr>
