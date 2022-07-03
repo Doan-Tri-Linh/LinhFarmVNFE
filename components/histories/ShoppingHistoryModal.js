@@ -24,6 +24,7 @@ import { Button } from "@chakra-ui/react";
 import {numberWithCommas} from "../helper/numberWithCommas"
 import { useToast } from "@chakra-ui/react";
 import UserApi from "../../pages/api/userApi";
+import { useState } from "react";
 
 export function ShoppingHistoryModal() {
   const dispatch = useDispatch();
